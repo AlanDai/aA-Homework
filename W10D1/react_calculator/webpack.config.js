@@ -1,16 +1,20 @@
+const path = require('path');
+
 module.exports = {
-  entry: './entry.jsx',
+  context: __dirname,
+  entry: "./index.jsx",
   output: {
-    filename: './bundle.js',
+    path: path.resolve(__dirname),
+    filename: "bundle.js"
   },
   module: {
     rules: [
       {
-        test: [/\.jsx?$/],
+        test: /\.jsx?$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
-          options: {
+          query: {
             presets: ['@babel/env', '@babel/react']
           }
         },
@@ -19,6 +23,6 @@ module.exports = {
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx', '*']
+    extensions: [".js", ".jsx", "*"]
   }
 };
